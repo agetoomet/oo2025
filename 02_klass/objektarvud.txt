@@ -1,0 +1,8 @@
+Hambaharjad
+
+1 kodus                                          Masinkoodi käsklus
+1 poest tulnud                                      koos sinsendandmetega
+20 - ühte suuremasse poodi karbis                 Programmeerimiskeele valmiskäsklus   
+1000 - poeleti tellmiys - suurem pappkast         Omaloodud funktsioon
+3000 - euroalus?                                 Klass / teek / moodul
+120000 - merekonteiner                           Kompnent ühendatud hajusarhitektuur
