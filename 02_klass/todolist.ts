@@ -9,38 +9,20 @@ class Task {
 
     completeTask() {
         this.completed = true;
+        console.log("Ülesanne: " + this.name + " on tehtud")
     }
 
     getStatus() {
-        return `Task: ${this.name} | Status: ${this.completed ? "Tehtud" : "Tegemata"}`;
-    }
-}
-
-class TaskList {
-    tasks: Task[] = [];
-
-    addTask(taskName: string): void {
-        this.tasks.push(new Task(taskName));
-    }
-
-    showTasks(): void {
-        this.tasks.forEach(task => console.log(task.getStatus()));
-    }
-
-    completeTask(index: number): void {
-        if (this.tasks[index]) {
-            this.tasks[index].completeTask();
-        } else {
-            console.log("Sellist ülesannet ei leidnud.");
-        }
+        return `Ülesanne: ${this.name} | Staatus: ${this.completed ? "Tehtud" : "Tegemata"}`;
     }
 }
 
 // Testimine
-const myTasks = new TaskList();
-myTasks.addTask("Tee TypeScript programm, kus kasutad klassi");
-myTasks.addTask("Täienda veebilehte");
+const task1 = new Task("Tee TypeScript programm, kus kasutad klassi");
+const task2 = new Task("Täienda veebilehte");
 
-myTasks.showTasks(); 
-myTasks.completeTask(0);
-myTasks.showTasks();  
+console.log(task1.getStatus());
+console.log(task2.getStatus());
+task1.completeTask(); 
+console.log(task1.getStatus()); 
+console.log(task2.getStatus());  
