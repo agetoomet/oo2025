@@ -1,7 +1,7 @@
 class SimpleCircuit {
-    private canvas: HTMLCanvasElement;
-    private ctx: CanvasRenderingContext2D;
-    private switchOn: boolean = false;
+    canvas: HTMLCanvasElement;
+    ctx: CanvasRenderingContext2D;
+    switchOn: boolean = false;
 
     constructor(canvasId: string) {
         this.canvas = document.getElementById(canvasId) as HTMLCanvasElement;
@@ -10,7 +10,7 @@ class SimpleCircuit {
         this.drawCircuit();
     }
 
-    private drawCircuit() {
+    drawCircuit() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         // Joonista aku
@@ -41,7 +41,7 @@ class SimpleCircuit {
         this.ctx.fill();
     }
 
-    private toggleSwitch(event: MouseEvent) {
+    toggleSwitch(event: MouseEvent) {
         const rect = this.canvas.getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
