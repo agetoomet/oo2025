@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Kaalutud keskmise arvutamine</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <label for="ainepunkt">Sisesta ainepunktide arv:</label>
+    <input type="number" id="ainepunkt" name="ainepunkt"  min="1">
+
+    <label for="hinne">Vali hinne(A-F, v.a E)</label>
+    <select name="hinne" id="hinne">
+        <option value="5">A</option>
+        <option value="4">B</option>
+        <option value="3">C</option>
+        <option value="2">D</option>
+        <option value="1">F</option>
+    </select>
+    <button onclick="lisaAine()">Lisa aine</button>
+    <div class="chart-container" id="chart"></div>
+    <div class="keskmine-container" id="keskmine"></div>
+    <script src="kontrolltoo1-3.js"></script>
+  </body>
+</html>
