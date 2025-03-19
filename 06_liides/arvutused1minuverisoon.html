@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Arvutused1</title>
+        <script src="arvutused1.js"></script>
+        <script> 
+            let c1;//declaring a variable that will hold an instance of InchestoCM
+            let i1;
+            function startPage(){
+                c1=new InchestoCM();
+                // setting the text inside IN
+                type1.innerText=c1.inputUnit();
+                // setting the text inside cm
+                type2.innerText=c1.outputUnit();
+                i1=new CmToInches();
+                type3.innerText=i1.inputUnit();
+                type4.innerText=i1.outputUnit();
+            }
+            function buttonClick(){
+                answer.innerText=c1.calculate(input1.valueAsNumber).toFixed(2);
+                answer2.innerText=i1.calculate(input2.valueAsNumber).toFixed(2);
+            }
+        </script>
+        <meta charset="utf-8"/>
+    </head>
+    <body onload="startPage()">
+        <input type="number" id="input1" onchange="buttonClick">
+        <span id="type1"></span>
+        <input type="button" value="=" onclick="buttonClick()" />&nbsp;
+        <span id="answer"></span>
+        <span id="type2"></span>
+        <br>
+        <br>
+        <input type="number" id="input2" onchange="buttonClick">
+        <span id="type3"></span>
+        <input type="button" value="=" onclick="buttonClick()" />&nbsp;
+        <span id="answer2"></span>
+        <span id="type4"></span>
+    </body>
+</html>
