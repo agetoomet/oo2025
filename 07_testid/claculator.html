@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="calculator.js"></script>
+    <title>Kalkulaator</title>
+    <script>
+        let calcobj=null;
+        let exports={}
+        function startPage(){
+            calcobj=new calculator();
+        }
+        function buttonPress(){
+            calcobj.pressButton(event.target.value);
+            Panel1.innerText=calcobj.getPanelContents();
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
