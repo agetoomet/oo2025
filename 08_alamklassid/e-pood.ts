@@ -21,8 +21,7 @@ abstract class Product {
     return this.stock;
     }
 
-    // Abstraktsed meetodid realiseerimiseks alamklassides
-    abstract calculatePrice(amount: number): number;
+    //abstraktsed meetodid realiseerimiseks alamklassides
     abstract isAvailable(): boolean;
     abstract additionalInfo(): string;
     abstract productType(): string;
@@ -39,15 +38,6 @@ class Electronics extends Product {
       this.manufacturer = manufacturer;
       this.guarantee = guarantee;
     }
-
-    calculatePrice(amount: number): number {
-      //10% allahindlus 3+ toote puhul
-      let sale = 0;
-      if (amount >= 3) {
-        sale = 0.1;
-      }
-      return this.price * amount * (1 - sale);
-    }
   
     isAvailable(): boolean {
       return this.stock > 0;
@@ -61,7 +51,7 @@ class Electronics extends Product {
       return "Elektroonika";
     }
   
-    // Elektroonika spetsiifilised meetodid
+    //elektroonika spetsiifilised meetodid
     extendGuarantee(years: number): void {
       if (years <= 0) {
         throw new Error("Garantii pikendus peab olema positiivne!");
@@ -85,20 +75,6 @@ class Clothes extends Product {
         this.material = material;
         this.color = color;
     }
-    
-    calculatePrice(amount: number): number {
-        //hooajalised allahindlused
-        const today = new Date();
-        const month = today.getMonth(); // 0-11 (jaanuar-detsember)
-        
-        let sale = 0;
-        //aprillis on 20% allahindlus
-        if (month === 3) {
-          sale = 0.2; // 20% allahindlus
-        }
-        
-        return this.price * amount * (1 - sale);
-    }
 
     isAvailable(): boolean {
         return this.stock > 0;
@@ -112,7 +88,7 @@ class Clothes extends Product {
         return "Riie";
     }
 
-    // Riide spetsiifilised meetodid
+    //riide spetsiifilised meetodid
     sizeAvailable(desiredSize: number): boolean {
         return this.size === desiredSize && this.stock > 0;
     }
@@ -126,19 +102,6 @@ class Food extends Product {
         super(price, name, stock);
         this.expirationDate = expirationDate;
         this.weight = weight;
-    }
-    
-    calculatePrice(amount: number): number { 
-        //toit on peaaegu aegumas = allahindlus
-        const today = new Date();
-        const daysTilExpired = Math.floor((this.expirationDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
-        
-        let sale = 0;
-        if (daysTilExpired <= 3 && daysTilExpired > 0) {
-          sale = 0.3; // 30% allahindlus kui aegub 3 päeva jooksul
-        }
-        
-        return this.price * amount * (1 - sale);
     }
 
     isAvailable(): boolean {
@@ -154,7 +117,7 @@ class Food extends Product {
         return "Toidukaup";
     }
 
-    // Toidukauba spetsiifilised meetodid
+    //toidukauba spetsiifilised meetodid
     willExpire(): boolean {
         const today = new Date();
         const daysTilExpired = Math.floor((this.expirationDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
@@ -230,6 +193,16 @@ function eshop() {
       console.log(product.additionalInfo());
       console.log("-".repeat(40));
     });
+    console.log("\nToidukaupade näide:");
+    console.log(`Piim aegumas: ${milk.willExpire() ? "Jah" : "Ei"}`);
+
+    console.log("\nRiiete näide:");
+    console.log(`38 suurus saadaval: ${shirt.sizeAvailable(38) ? "Jah" : "Ei"}`);
+
+    console.log("Elektroonika näide:");
+    console.log(phone.getGuaranteeInfo());
+    phone.extendGuarantee(1);
+    console.log(`Pärast garantii pikendamist: ${phone.getGuaranteeInfo()}`);
 }
 
 eshop();

@@ -38,14 +38,6 @@ var Electronics = /** @class */ (function (_super) {
         _this.guarantee = guarantee;
         return _this;
     }
-    Electronics.prototype.calculatePrice = function (amount) {
-        //10% allahindlus 3+ toote puhul
-        var sale = 0;
-        if (amount >= 3) {
-            sale = 0.1;
-        }
-        return this.price * amount * (1 - sale);
-    };
     Electronics.prototype.isAvailable = function () {
         return this.stock > 0;
     };
@@ -55,7 +47,7 @@ var Electronics = /** @class */ (function (_super) {
     Electronics.prototype.productType = function () {
         return "Elektroonika";
     };
-    // Elektroonika spetsiifilised meetodid
+    //elektroonika spetsiifilised meetodid
     Electronics.prototype.extendGuarantee = function (years) {
         if (years <= 0) {
             throw new Error("Garantii pikendus peab olema positiivne!");
@@ -76,17 +68,6 @@ var Clothes = /** @class */ (function (_super) {
         _this.color = color;
         return _this;
     }
-    Clothes.prototype.calculatePrice = function (amount) {
-        //hooajalised allahindlused
-        var today = new Date();
-        var month = today.getMonth(); // 0-11 (jaanuar-detsember)
-        var sale = 0;
-        //aprillis on 20% allahindlus
-        if (month === 3) {
-            sale = 0.2; // 20% allahindlus
-        }
-        return this.price * amount * (1 - sale);
-    };
     Clothes.prototype.isAvailable = function () {
         return this.stock > 0;
     };
@@ -96,7 +77,7 @@ var Clothes = /** @class */ (function (_super) {
     Clothes.prototype.productType = function () {
         return "Riie";
     };
-    // Riide spetsiifilised meetodid
+    //riide spetsiifilised meetodid
     Clothes.prototype.sizeAvailable = function (desiredSize) {
         return this.size === desiredSize && this.stock > 0;
     };
@@ -110,16 +91,6 @@ var Food = /** @class */ (function (_super) {
         _this.weight = weight;
         return _this;
     }
-    Food.prototype.calculatePrice = function (amount) {
-        //toit on peaaegu aegumas = allahindlus
-        var today = new Date();
-        var daysTilExpired = Math.floor((this.expirationDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
-        var sale = 0;
-        if (daysTilExpired <= 3 && daysTilExpired > 0) {
-            sale = 0.3; // 30% allahindlus kui aegub 3 päeva jooksul
-        }
-        return this.price * amount * (1 - sale);
-    };
     Food.prototype.isAvailable = function () {
         var today = new Date();
         return this.stock > 0 && today < this.expirationDate;
@@ -130,7 +101,7 @@ var Food = /** @class */ (function (_super) {
     Food.prototype.productType = function () {
         return "Toidukaup";
     };
-    // Toidukauba spetsiifilised meetodid
+    //toidukauba spetsiifilised meetodid
     Food.prototype.willExpire = function () {
         var today = new Date();
         var daysTilExpired = Math.floor((this.expirationDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
@@ -161,5 +132,13 @@ function eshop() {
         console.log(product.additionalInfo());
         console.log("-".repeat(40));
     });
+    console.log("\nToidukaupade näide:");
+    console.log("Piim aegumas: ".concat(milk.willExpire() ? "Jah" : "Ei"));
+    console.log("\nRiiete näide:");
+    console.log("38 suurus saadaval: ".concat(shirt.sizeAvailable(38) ? "Jah" : "Ei"));
+    console.log("Elektroonika näide:");
+    console.log(phone.getGuaranteeInfo());
+    phone.extendGuarantee(1);
+    console.log("P\u00E4rast garantii pikendamist: ".concat(phone.getGuaranteeInfo()));
 }
 eshop();
