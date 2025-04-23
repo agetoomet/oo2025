@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arva Number Mäng</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
+    }
+    input, button {
+      margin: 10px;
+      font-size: 1rem;
+    }
+    #teade {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Arva number (1 kuni 100)</h1>
+  <input type="number" id="pakkumine" min="1" max="100" />
+  <button id="kontrolli">Paku</button>
+  <div id="teade"></div>
+  <div id="katsed"></div>
+  <button id="uusMang">Alusta uuesti</button>
+
+  <script type="module" src="arvuarvamine.js"></script>
+</body>
+</html>
