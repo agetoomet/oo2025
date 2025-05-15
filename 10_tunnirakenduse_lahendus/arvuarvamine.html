@@ -25,11 +25,21 @@
 </head>
 <body>
   <h1>Arva number (1 kuni 100)</h1>
-  <input type="number" id="pakkumine" min="1" max="100" />
-  <button id="kontrolli">Paku</button>
-  <div id="teade"></div>
-  <div id="katsed"></div>
-  <button id="uusMang">Alusta uuesti</button>
+  <label for="mangijaNimi">Sisesta oma nimi:</label>
+  <input type="text" id="mangijaNimi">
+  <button id="alustaMang">Alusta mängu</button>
+
+  <div id="manguOsa" style="display: none; margin-top: 20px;">
+    <p id="tervitus"></p>
+
+    <label for="pakkumine">Sinu pakkumine:</label>
+    <input type="number" id="pakkumine">
+    <button id="kontrolli">Kontrolli</button>
+    <button id="uusMang">Uus mäng</button>
+
+    <p id="teade"></p>
+    <p id="katsed"></p>
+  </div>
 
   <script type="module" src="arvuarvamine.js"></script>
 </body>

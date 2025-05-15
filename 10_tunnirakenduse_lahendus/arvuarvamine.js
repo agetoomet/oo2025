@@ -21,8 +21,8 @@ var Mangija = /** @class */ (function () {
 }());
 var InimMangija = /** @class */ (function (_super) {
     __extends(InimMangija, _super);
-    function InimMangija() {
-        return _super !== null && _super.apply(this, arguments) || this;
+    function InimMangija(nimi) {
+        return _super.call(this, nimi) || this;
     }
     InimMangija.prototype.paku = function () {
         var sisend = document.getElementById("pakkumine");
@@ -31,19 +31,24 @@ var InimMangija = /** @class */ (function (_super) {
     return InimMangija;
 }(Mangija));
 var Mäng = /** @class */ (function () {
-    function Mäng() {
-        this.mangija = new InimMangija("Mängija");
+    function Mäng(nimi) {
+        this.mangija = new InimMangija(nimi);
         this.sihtarv = this.genereeriArv();
         this.katsed = 0;
         this.seaKuularid();
+        var tervitus = document.getElementById("tervitus");
+        tervitus.textContent = "Tere tulemast, ".concat(this.mangija.nimi, "! Paku arv vahemikus 1\u2013100.");
+        document.getElementById("manguOsa").style.display = "block";
     }
     Mäng.prototype.genereeriArv = function () {
         return Math.floor(Math.random() * 100) + 1;
     };
     Mäng.prototype.seaKuularid = function () {
         var _this = this;
-        document.getElementById("kontrolli").addEventListener("click", function () { return _this.kontrolli(); });
-        document.getElementById("uusMang").addEventListener("click", function () { return _this.reset(); });
+        document.getElementById("kontrolli")
+            .addEventListener("click", function () { return _this.kontrolli(); });
+        document.getElementById("uusMang")
+            .addEventListener("click", function () { return _this.reset(); });
     };
     Mäng.prototype.kontrolli = function () {
         var pakkumine = this.mangija.paku();
@@ -51,17 +56,17 @@ var Mäng = /** @class */ (function () {
         var teade = document.getElementById("teade");
         var katsedEl = document.getElementById("katsed");
         if (isNaN(pakkumine)) {
-            teade.textContent = "Palun sisesta korrektne number!";
+            teade.textContent = "".concat(this.mangija.nimi, ", palun sisesta korrektne number!");
             return;
         }
         if (pakkumine < this.sihtarv) {
-            teade.textContent = "Liiga väike!";
+            teade.textContent = "".concat(this.mangija.nimi, ", liiga v\u00E4ike!");
         }
         else if (pakkumine > this.sihtarv) {
-            teade.textContent = "Liiga suur!";
+            teade.textContent = "".concat(this.mangija.nimi, ", liiga suur!");
         }
         else {
-            teade.textContent = "\u00D5ige! Arv oli ".concat(this.sihtarv, ".");
+            teade.textContent = "\u00D5ige, ".concat(this.mangija.nimi, "! Arv oli ").concat(this.sihtarv, ".");
         }
         katsedEl.textContent = "Katsed: ".concat(this.katsed);
     };
@@ -74,4 +79,16 @@ var Mäng = /** @class */ (function () {
     };
     return Mäng;
 }());
-var mäng = new Mäng();
+document.getElementById("alustaMang")
+    .addEventListener("click", function () {
+    var nimiInput = document.getElementById("mangijaNimi");
+    var nimi = nimiInput.value.trim();
+    if (nimi === "") {
+        alert("Palun sisesta nimi!");
+        return;
+    }
+    // Peida nimesisestuse osa
+    document.getElementById("alustaMang").setAttribute("disabled", "true");
+    nimiInput.setAttribute("disabled", "true");
+    new Mäng(nimi);
+});
