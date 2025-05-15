@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <title>Kiri ja Veebiuudis</title>
+    <script type="module" src="kirjad3.js" defer></script>
+</head>
+<body>
+    <h1>Lisa kiri</h1>
+    <form id="kiriForm">
+        <label>Pealkiri: <input type="text" id="pealkiri" required></label><br>
+        <label>Sisu: <input type="text" id="sisu" required></label><br>
+        <label>URL (valikuline): <input type="text" id="url"></label><br>
+        <button type="submit">Lisa</button>
+    </form>
+
+    <h2>Kirjad:</h2>
+    <ul id="kirjad-list"></ul>
+
+</body>
+</html>
