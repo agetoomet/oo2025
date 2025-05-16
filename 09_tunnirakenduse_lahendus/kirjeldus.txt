@@ -1,1 +1,10 @@
 Tunnis ette võetud teemal viimistletud omapoolne rakendus.
+
+Arvu arvamise mäng
+- idee on siis teha arvu ära arvamise mäng, kus arvuti genereerib ühe suvalise arvu ning inimene ehk kasutaja peab selle ära arvama
+- arvuti võrdleb inimese pakutud arvu enda arvuga ning annab vastavalt tagasisidet, et kui arv on liiga väike, liiga suur või sama mis arvuti arv, siis annab vastavat tagasisidet 
+- mängu saab ka uuesti alustada (mängija nimi jääb samaks)
+typescripti failis:
+- abstraktne klass mängija -- küsib mängija nime ja seal on ka abstraktne funktsioon, kus mängija hiljem pakub arvu
+- alamklass inimmängija jaoks, mis pärib abstraktsest klassist paku funktsiooni
+- eraldi klass mängu jaoks
