@@ -1,1 +1,155 @@
 Märkmed seminari teemadel
+
+- suvepraktika koodi osa, ettevalmistada
+- 10min arutada selgitada oma teemat et teistele meelde tuletada
+
+Objektide massiivi loomine ja kasutamine
+- typescriptis määratakse ära objektide tüüp/tüübid 
+    luuakse näiteks kõigepealt tühi massiiv ning sinna lisatakse programmi käigus objekte push meetodiga
+- võib ka kohe luua massiivi etteantud objektidega
+- saab ka teha readonly massiive, mida siis ei saa programmi jooksul enam muuta
+- massiivi objekte saab läbi vaadata kasutades for tsüklit
+- masiivist saab ka kindlat objekti välja kutsuda indeksite kaudu
+- massiivi objekte saab filtreerida mingi tingimuse alusel kasutades filter meetodit 
+
+TypeScripti/Java kasutusvaldkonnad, käivitamise moodused
+- kasutatakse peamiselt veebiarenduses
+- hõlbustab keeruliste UI-de loomist komponentide või klassipõhiste arhitektuuride abil
+- kasutatakse modulaarse ja taaskasutatava koodi loomiseks
+- et luua teenuseid ja API-kliente, kasutades klasside ja liideste kombinatsiooni
+- peamiselt veebirakendustes, desktopi rakendustes ja node.js serverirakendustes
+ts fail kompileeritakse js failiks -- npx tsc app.ts ning siis käivitatakse js fail -- node app.js  
+    - või npx ts-node failinimi.ts
+- Java OOP on tugevalt levinud serveripoolsetes rakendustes, Androidi arenduses, tööstussüsteemides ja suurettevõtete infosüsteemides
+- kasutatakse suurte süsteemide loogiliseks modelleerimiseks
+- andmebaasi interaktsiooniks (JPA, Hibernate).
+- veebiteenuste loomiseks (Spring Framework, REST API-d).
+- androidi rakenduste loomiseks.
+- peamiselt ärirakendused ja serverid, androidi rakenduste loomiseks, andmebaasi interaktsiooniks, finants-, kindlustus- ja pangandussüsteemid
+Java fail kompileeritakse baitkoodiks -- javac failinimi.java ning käivitatakse java failinimi
+    - IDE-d (Eclipse, IntelliJ): Rakendusi saab arendada ja käivitada ka otse arenduskeskkonnast.
+
+TypeScripti/Java andmetüübid
+- number
+- string
+- boolean
+- void tüüp, mida kasutatakse funktsioonide puhul, mis ei tagasta mitte midagi
+- endaloodud klassi
+- massiivid kõige eelnevaga
+
+Typescripti/Java massiivide/listide loomine ja kasutamine:
+typescript: 
+    let numbrid: number[] = [1, 2, 3, 4];
+    let nimed: string[] = ["Anna", "Peeter", "Kati"];
+    console.log(nimed[0]); // "Anna"
+    nimed[1] = "Mati";
+Java: 
+    int[] numbrid = {1, 2, 3, 4};
+    String[] nimed = {"Anna", "Peeter", "Kati"};
+    int[] arvud = new int[5]; // kõik väärtused on 0
+    System.out.println(nimed[0]);
+    nimed[1] = "Mati";
+    for (String nimi : nimed) {
+        System.out.println(nimi);
+    }
+
+veaolukorrad ja nende haldamine
+- try laseb testide koodi juppi errorite leidmiseks kui see executetakse, proovin midagi kui on kõik hästi liigun edasi
+- catch lubab defineerida koodijuppi executemiseks kui error esineb try-s, aitab rakendada, saab panna koodijupile kinnipüüdmis osa erroriteks viga proovi uuesti
+- throw lubab luua omaloodud errori
+
+Objektorienteerituse head ning tülikad küljed
+- organiseeritus
+- staatiline
+- selge struktuur ja loogiline jaotus
+- taaskasutus - pärilus
+- ülekeerukus lihtsate ülesannete puhul
+- algajatel raske mõista erinevaid mõisteid (pärilikkus, abstraktsioon, kapseldamine, liidesed )
+- liigne abstraktsioon võib segadust tekitada
+- rohkem mälu- ja jõudlusnõudeid
+- halb disain viib keerukuseni
+
+Klassi kasutamine staatiliste funktsioonide kogumikuna
+- klassi ei instantsita (ei looda objekti), vaid kogu funktsionaalsus on defineeritud static meetoditena
+- muudab klassi omamoodi utiliitide (kitsalt spetsiifilist ülesannet täitev programm) kogumiks
+- kasutada, kui meetodid ei vaja objekti siseseid andmeid (pole this ega ole seotud instantsi olekuga).
+    - funktsioonid on seotud kindla teemaga (nt matemaatika, failide töötlemine, kuupäevad jms).
+    - luua modulaarseid ja taaskasutatavaid tööriistu.
+class MathUtils {
+    static ruut(n: number): number {
+        return n * n;
+    }
+
+    static keskmine(a: number, b: number): number {
+        return (a + b) / 2;
+    }
+}
+
+console.log(MathUtils.ruut(5)); (Pole vaja new MathUtils() teha)
+console.log(MathUtils.keskmine(4, 10));
+
+Andmeid sisaldava klassi eksemplari kasutamine Isikukoodi näitel
+
+Andmete muutmist lubava klassi eksemplari kasutamine koordinaatidega kilpkonna näitel
+
+staatilised muutujad
+- kuuluvad klassile endale 
+- idee poolest seotud
+- saab kasutada objektita - nt loendur
+- isendimuutujad - juuksevärv
+- tavaline muutuja - kõigil sama
+- võib olla muutuja klassist väljas
+isendi meetod
+- konkreetse auto mass jne
+staatiline meetod
+- auto klassi puhul mitu autot on kokku
+- pole seotud konkreetse autoga
+
+Liideste kasutamine rakenduse kavandamise ja töö jagamise juures
+- millised funktsioonid peavad klassis olemas olema
+- aitab tööd jagada
+- ühe klassi sees on lihtsam muuta funktsiooni andmeid ja väiksem võimalus et midagi on katki
+
+Liideste kasutamine komponentide omavahel asendamiseks:
+Liides määratleb lepingu, mida klass peab järgima. Kui mitu klassi rakendavad sama liidest, saab neid omavahel asendada, ilma et sõltuv klass peaks teadma konkreetset teostust.
+Kujuta ette, et sul on kohvimasin, ja liides ütleb:
+teeKohvi() peab olemas olema.
+
+Üks masin võib teha presskannu kohvi, teine kapsliga.
+Aga sind huvitab ainult: "Kas ma saan teeKohvi() funktsiooni kasutada?"
+
+Liideste kasutamine rakenduse eri otstarbega osade ühendamisel
+- ühendada erinevad rakenduse osad (nt logimine, maksmine, teavitamine),
+- vahetada komponente ilma koodi ümber kirjutamata,
+- hoida rakenduse paindliku ja korrastatuna.
+
+abstraktne klass
+- mall millest alamklassid saavad pärida struktuuri
+- on kontruktor
+
+alamklass saab pärida ka mingit meetodit, loogikat abstraktselt klassilt
+- tuleb kutsuda super meetodi oma konstruktorile lisaks
+- pärib omadused ja meetodid oma vanem klassilt
+- lisada oma meetodeid ja omadusi
+- võib loogika üle kirjutada
+
+pärilus
+- alamklassid saavad kasutada vanema klassi omadusi ja meetodeid
+- kontsruktoris esimese asjana tuleb välja kutsuda super
+
+automaattestid
+- testi põhine arendus
+- testid enne koodi
+- saab mõelda mida on vaja 
+- aitab vältida liigset keerukust
+- näitab kuidas süsteem peaks töötama
+- "testid dokumentatsioonid mida saab käivitada"
+- jest
+
+mida eksamil plaanin teha:
+- prototüübist joonistamise ülesanne
+
+eksam:
+- vaja kõik vahekontrollide linnukesed olemas olema
+- sama tase mis kontrolltöö
+- peab olema valmis kõiki kodutöid näitama
