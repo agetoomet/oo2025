@@ -79,7 +79,7 @@ var DrawingApp = /** @class */ (function () {
     DrawingApp.prototype.setStrokeStyle = function () {
         var color = document.querySelector("#colorInput").value;
         var _a = this.hexToRgb(color), r = _a.r, g = _a.g, b = _a.b;
-        this.ctx.strokeStyle = "rgb(".concat(r, ", ").concat(g, ", ").concat(b, " )");
+        this.ctx.strokeStyle = "rgb(".concat(r, ",").concat(g, ",").concat(b, ")");
     };
     DrawingApp.prototype.setLineWidth = function (e) {
         var input = e.target;

@@ -66,7 +66,7 @@ class DrawingApp{
     private setStrokeStyle(): void{
         const color = (document.querySelector("#colorInput") as HTMLInputElement).value;
         const {r, g, b} = this.hexToRgb(color);
-        this.ctx.strokeStyle = `rgb(${r}, ${g}, ${b} )`;
+        this.ctx.strokeStyle = `rgb(${r},${g},${b})`;
     }
 
     private setLineWidth(e: Event): void{
