@@ -32,11 +32,17 @@ class DrawingApp{
     private ctx: CanvasRenderingContext2D;
     private isDrawing = false; 
     private tool: Tool;
+    private colorChangeCounter = 0;
+    private lastColor: string = "";
 
     constructor(){
         this.canvas = document.querySelector("#canvas") as HTMLCanvasElement;
         this.ctx = this.canvas.getContext("2d")!;
         this.tool = new PenTool(this.ctx);
+        const colorInput = document.querySelector("#colorInput") as HTMLInputElement;
+        colorInput.addEventListener("change", () => {
+            this.updateColor(colorInput.value);
+        });
 
         this.init()
     }
@@ -63,10 +69,26 @@ class DrawingApp{
     return { r, g, b };
     }
 
-    private setStrokeStyle(): void{
-        const color = (document.querySelector("#colorInput") as HTMLInputElement).value;
-        const {r, g, b} = this.hexToRgb(color);
+    private updateColor(newColor: string): void {
+        if (newColor !== this.lastColor) {
+            this.colorChangeCounter++;
+            this.lastColor = newColor;
+            this.updateColorChangeDisplay();
+        }
+        this.setStrokeStyle(newColor);
+    }
+
+    private setStrokeStyle(color?:string): void{
+        const selectedColor = color ?? (document.querySelector("#colorInput") as HTMLInputElement).value;
+        const {r, g, b} = this.hexToRgb(selectedColor);
         this.ctx.strokeStyle = `rgb(${r},${g},${b})`;
+    }
+
+    private updateColorChangeDisplay(): void{
+        const counterEl = document.querySelector("#colorChangeCounter") as HTMLElement;
+        if(counterEl){
+            counterEl.textContent = `Värvi muudeti: ${this.colorChangeCounter}`;
+        }
     }
 
     private setLineWidth(e: Event): void{
